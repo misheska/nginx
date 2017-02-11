@@ -17,7 +17,6 @@ test:
     - chef exec cookstyle
     - chef exec foodcritic . --exclude spec -f any -t ~supermarket
     - chef exec rspec spec/
-    - chef exec kitchen converge
     - chef exec kitchen verify
 
 general:
