@@ -1,6 +1,4 @@
 machine:
-  environment:
-    KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
   services:
     - docker
 
@@ -15,10 +13,12 @@ test:
     - eval "$(/opt/chefdk/bin/chef shell-init bash)"
   override:
     - chef --version
-    - chef gem query -d chefspec rubocop foodcritic rake kitchen-docker
+    - chef gem query -d chefspec rubocop foodcritic rake kitchen-dokken
     - chef exec cookstyle
     - chef exec foodcritic . --exclude spec -f any -t ~supermarket
     - chef exec rspec spec/
+    - chef exec kitchen converge
+    - chef exec kitchen verify
 
 general:
   artifacts:
