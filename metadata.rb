@@ -2,8 +2,8 @@ name 'nginx'
 maintainer 'Mischa Taylor'
 maintainer_email 'mischa@misheska.com'
 license 'apachev2'
-description 'Installs/Configures nginx'
-long_description 'Installs/Configures nginx'
+description 'Installs/configures a simple web site using the Nginx web server'
+long_description IO.read("#{File.dirname(__FILE__)}/README.md")
 version '0.1.0'
 
 # The `issues_url` points to the location where issues for this cookbook are
