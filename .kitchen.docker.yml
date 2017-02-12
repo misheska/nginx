@@ -1,7 +1,9 @@
 ---
 driver:
   name: docker
-  privileged: true
+
+provisioner:
+  name: chef_zero
 
 platforms:
   - name: centos73
