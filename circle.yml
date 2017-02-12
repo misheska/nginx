@@ -15,7 +15,7 @@ test:
     - eval "$(/opt/chefdk/bin/chef shell-init bash)"
   override:
     - chef --version
-    - chef gem query -d rubocop kitchen-dokken
+    - chef gem query -d rubocop kitchen-docker
     - chef exec cookstyle
     - chef exec kitchen verify
 

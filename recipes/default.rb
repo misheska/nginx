@@ -20,11 +20,28 @@ package 'epel-release'
 
 package 'nginx'
 
-service 'nginx' do
-  action [:enable, :start]
+directory '/var/www/html' do
+  recursive true
 end
 
 template '/usr/share/nginx/html/index.html' do
   source 'index.html.erb'
   mode '0644'
+end
+
+template '/etc/nginx/nginx.conf' do
+  notifies :reload, 'service[nginx]', :immediately
+end
+
+directory '/etc/nginx/sites-enabled' do
+  recursive true
+end
+
+template '/etc/nginx/sites-enabled/default.conf' do
+  notifies :reload, 'service[nginx]', :immediately
+end
+
+service 'nginx' do
+  supports status: true, restart: true, reload: true
+  action [ :enable, :start ]
 end

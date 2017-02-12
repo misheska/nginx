@@ -1,0 +1,22 @@
+---
+driver:
+  name: docker
+  privileged: true
+
+platforms:
+  - name: centos73
+    driver:
+      platform: rhel
+      image: centos:7.3.1611
+
+verifier:
+  name: inspec
+
+suites:
+  - name: default
+    run_list:
+      - recipe[nginx::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
