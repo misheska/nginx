@@ -8,16 +8,7 @@ addons:
     packages:
       - chefdk
 
-instLL: echo "skip bundle install"
-
-branches:
-  only:
-    - master
-
-services: docker
-
 before_script:
-  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
   - /opt/chefdk/embedded/bin/chef --version
 
@@ -31,4 +22,3 @@ matrix:
       - /opt/chefdk/embedded/bin/cookstyle --version
     - script:
       - /opt/chefdk/bin/chef exec cookstyle
-      env: UNIT_AND_LINT=1
