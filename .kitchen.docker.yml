@@ -2,18 +2,12 @@
 driver:
   name: docker
   privileged: true
-  run_command: /usr/lib/systemd/systemd
-  provision_command:
-    - yum -y install lsof which systemd-sysv initscripts net-tools
 
 provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos73
-    driver:
-      platform: rhel
-      image: centos:7.3.1611
+  - name: centos-6
 
 verifier:
   name: inspec
